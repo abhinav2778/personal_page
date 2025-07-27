@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Projects</title>
+  <style>
+    /* Reset some default styles */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-weight: 700;
+    }
+
+    main {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .filter-btns {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .filter-btns button {
+      background: #eee;
+      border: none;
+      padding: 0.5rem 1rem;
+      margin: 0 0.3rem;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.3s;
+      font-weight: 600;
+    }
+
+    .filter-btns button.active,
+    .filter-btns button:hover {
+      background: #4CAF50;
+      color: white;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+    }
+
+    .project-title {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.25rem;
+      color: #222;
+    }
+
+    .project-description {
+      flex-grow: 1;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      color: #555;
+    }
+
+    .project-link {
+      text-align: right;
+    }
+
+    .project-link a {
+      color: #4CAF50;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .project-link a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      margin-top: 3rem;
+      color: #777;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 480px) {
+      header, main {
+        padding: 0 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>My Projects</h1>
+</header>
+
+<main>
+  <div class="filter-btns">
+    <button class="active" data-filter="all">All</button>
+    <button data-filter="web">Web</button>
+    <button data-filter="mobile">Mobile</button>
+    <button data-filter="other">Other</button>
+  </div>
+
+  <div class="projects" id="projects-list">
+    <!-- Project cards will go here -->
+    <div class="project-card" data-category="web">
+      <h2 class="project-title">Portfolio Website</h2>
+      <p class="project-description">A personal portfolio website built with HTML, CSS, and JavaScript.</p>
+      <div class="project-link"><a href="https://github.com/yourusername/portfolio" target="_blank">View on GitHub</a></div>
+    </div>
+
+    <div class="project-card" data-category="mobile">
+      <h2 class="project-title">Todo List App</h2>
+      <p class="project-description">A mobile app to manage daily tasks with React Native.</p>
+      <div class="project-link"><a href="https://github.com/yourusername/todo-app" target="_blank">View on GitHub</a></div>
+    </div>
+
+    <div class="project-card" data-category="web">
+      <h2 class="project-title">Blog Platform</h2>
+      <p class="project-description">A full-stack blog platform using Node.js and MongoDB.</p>
+      <div class="project-link"><a href="https://github.com/yourusername/blog-platform" target="_blank">View on GitHub</a></div>
+    </div>
+
+    <div class="project-card" data-category="other">
+      <h2 class="project-title">Data Analysis Scripts</h2>
+      <p class="project-description">Python scripts for analyzing and visualizing datasets.</p>
+      <div class="project-link"><a href="https://github.com/yourusername/data-analysis" target="_blank">View on GitHub</a></div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  &copy; 2025 Your Name
+</footer>
+
+<script>
+  const filterButtons = document.querySelectorAll('.filter-btns button');
+  const projects = document.querySelectorAll('.project-card');
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Remove active class from all buttons
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      // Add active class to clicked button
+      button.classList.add('active');
+
+      const filter = button.getAttribute('data-filter');
+
+      projects.forEach(project => {
+        if (filter === 'all' || project.getAttribute('data-category') === filter) {
+          project.style.display = 'flex';
+        } else {
+          project.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
